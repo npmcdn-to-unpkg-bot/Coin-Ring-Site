@@ -24,3 +24,7 @@ $('.grid').isotope({
     layoutMode: 'packery'
   }
 });
+
+$grid.imagesLoaded().progress( function() {
+  $grid.isotope('layout');
+});
