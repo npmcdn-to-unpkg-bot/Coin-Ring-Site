@@ -1,6 +1,6 @@
 // JavaScript Document
 // external js: isotope.pkgd.js
-
+$(function () {
 $(window).scroll(
     {
         previousTop: 0
@@ -15,16 +15,50 @@ $(window).scroll(
     this.previousTop = currentTop;
 });
 
-$('.grid').isotope({
-  itemSelector: '.product',
-  masonry: {
-    gutter: 5,
-    columnWidth: 200,
-    isFitWidth: true,
-    layoutMode: 'packery'
-  }
+/*$('#test').on('click', function() {
+  $('.non').hide();
+   var main = $('#columns');
+  for(var i =0; i<main[0].children.length; i++) {
+    
+  products.push(main[0].children[i]);
+  } 
+  
+});
+$('#hide').on('click', function() {
+  $('.non').show();
+});*/
+
+var $grid = $('.grid'),
+  fitWidthTorF = true,
+  winWidth = $(window).width();
+
+$(window).resize(function(){
+    winWidth = $(window).width();
 });
 
-$grid.imagesLoaded().progress( function() {
+
+if(winWidth < 630) {
+  fitWidthTorF = false;
+}
+
+
+  $grid.imagesLoaded().progress( function() {
   $grid.isotope('layout');
-});
+  });
+
+  $grid.isotope({
+    itemSelector: '.product',
+    masonry: {
+      gutter: 5,
+      columnWidth: 200,
+      isFitWidth: fitWidthTorF,
+      layoutMode: 'packery'
+    }
+
+  });
+
+
+}); // end main function
+/*if(width > 630) {
+  console.log(masonry.gutter);
+  }*/

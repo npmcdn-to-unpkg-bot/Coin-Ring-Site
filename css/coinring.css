@@ -48,22 +48,18 @@ li {
 .product {
   float: left;
   width: 400px;
-  /* height: 350px; */
   background: white;
+  border: 1px solid gray;
   border-color: hsla(0, 0%, 0%, 0.7);
-  border: 1px dotted #333;
   margin-bottom: 10px;
-   overflow: hidden; 
   border-radius: 10px;
-  padding: 15px;
+  padding: 5px;
 }
 
  .grid-2 { 
-  width: 600px; 
+  width: 800px; 
   /* height: 600px;  */
 } 
-
-
 
 .image {
   position: relative;
@@ -71,10 +67,10 @@ li {
 img {
   max-width: 100%;
   width: 100%;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 15px;
+  /* border-bottom: 1px solid #ccc;
+  padding-bottom: 15px; */
   margin-bottom: 5px;
-  
+  border-radius: 10px;
 }
 p {
   font: 12px/18px Arial, sans-serif;
@@ -89,17 +85,20 @@ h1 {
   color: white;
 }
 
-/* @media (max-width: 900px) {
-  .grid-item {
+ @media (max-width: 1250px) {
+  .product {
     width: 200px;
   }
+  .grid-2 { 
+      width: 400px; 
+    }
 }
-@media (max-width: 500px) {
-  .grid-item {
+ @media (max-width: 630px) {
+  .product {
     width: 100%;
   }
   .grid-2 { 
       width: 100%; 
     }
   
-} */
+}  
