@@ -26,7 +26,19 @@ li {
   margin: 0px 20px 0px 20px;
 }
 
+#popup  {
+  background-color: gray;
+  z-index: 99;
+  display: none;
+  position: fixed;
+  /* margin-left:30px; */
+  border-radius:7px; 
+  width:80%;
+  height: 90%;
+  -webkit-box-shadow:5px 8px 30px 5px black;
+  opacity: .95;
 
+}
 
 /* ---- grid ---- */
 
@@ -93,7 +105,7 @@ h1 {
       width: 400px; 
     }
 }
- @media (max-width: 630px) {
+ @media (max-width: 500px) {
   .product {
     width: 100%;
   }
@@ -102,3 +114,13 @@ h1 {
     }
   
 }  
+
+/* .product:hover {
+  background: #8CF;
+  cursor: pointer;
+} */
+
+.product.gigante {
+  width: 1000px;
+  background: #F80;
+}
