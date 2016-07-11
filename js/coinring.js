@@ -1,90 +1,85 @@
 // JavaScript Document
 // external js: isotope.pkgd.js
 $(function () {
-$(window).scroll(
-    {
-        previousTop: 0
-    }, 
-    function () {
-    var currentTop = $(window).scrollTop();
-    if (currentTop < this.previousTop) {
-        $("nav").fadeIn();
-    } else {
-        $("nav").fadeOut();
-    }
-    this.previousTop = currentTop;
-});
+  $(window).scroll(
+        {
+            previousTop: 0
+        }, 
+        function () {
+        var currentTop = $(window).scrollTop();
+        if (currentTop < this.previousTop) {
+            $("nav").fadeIn();
+        } else {
+            $("nav").fadeOut();
+        }
+        this.previousTop = currentTop;
+    });
 
-/*$('#test').on('click', function() {
-  $('.non').hide();
-   var main = $('#columns');
-  for(var i =0; i<main[0].children.length; i++) {
-    
-  products.push(main[0].children[i]);
-  } 
-  
-});
-$('#hide').on('click', function() {
-  $('.non').show();
-});*/
+    var $grid = $('.grid');
 
-$('.product').on('click', function() {
-  var balls = $(this);
-  console.log(products[0].text);
-  /*var pop = $('#popup');
-  pop.css('display', 'block');
-  pop.html(balls);*/
-
-});
-
-var $grid = $('.grid');
-$(window).on('load', function(){
-  $grid.append(
-    '<div class="product grid-2">\
-      <div class= "image">\
-      <img src=' + products[0].img + '> \
-      </div> \
-    </div>');
-
-  console.log(products[0].name);
-
-});
-
-
-var $grid = $('.grid'),
-  fitWidthTorF = true,
-  winWidth = $(window).width();
-
-$(window).resize(function(){
+    $(window).on('load', function(){
+      $.each(products, populateImages);
+      function populateImages(index, value) {
+        $grid.append(
+        '<div class ="' + products[index].class + '" data-status = "' + index + '"' +
+          'data-filter="' + products[index].dataFilter + '">' +
+           '<div class = "image">' +
+            '<img src=' + products[index].img + '>' +
+            '<h1>' + '$' + products[index].price + '</h1>' +
+          '</div>' +
+          '<p>' + products[index].text + '</p>' +
+        '</div>');
+      }
+    var fitWidthTorF = true,
     winWidth = $(window).width();
-});
+
+    $(window).resize(function(){
+        winWidth = $(window).width();
+    });
 
 
-if(winWidth < 500) {
-  fitWidthTorF = false;
-}
-
-
-  $grid.imagesLoaded().progress( function() {
-  $grid.isotope('layout');
-  });
-
-  $grid.isotope({
-    itemSelector: '.product',
-    masonry: {
-      gutter: 5,
-      columnWidth: 200,
-      isFitWidth: fitWidthTorF,
-      layoutMode: 'packery'
+    if(winWidth < 500) {
+      fitWidthTorF = false;
     }
 
-  });
-/*$grid.on( 'click', '.product', function() {
-  // change size of item by toggling gigante class
-  $( this ).toggleClass('gigante');
-  $grid.isotope('layout');
-});*/
+    $grid.imagesLoaded().progress( function() {
+      $grid.isotope('layout');
+      });
 
+      $grid.isotope({
+        itemSelector: '.product',
+        masonry: {
+          gutter: 5,
+          columnWidth: 200,
+          isFitWidth: fitWidthTorF,
+          layoutMode: 'packery'
+        }
+    });
+
+    $('.filters-button-group').on( 'click', 'button', function() {
+        var filterValue = $( this ).attr('data-filter');
+        // use filterFn if matches value
+        $grid.isotope({ filter: filterValue });
+      });
+      // change is-checked class on buttons
+      $('.button-group').each( function( i, buttonGroup ) {
+        var $buttonGroup = $( buttonGroup );
+        $buttonGroup.on( 'click', 'button', function() {
+          $buttonGroup.find('.is-checked').removeClass('is-checked');
+          $( this ).addClass('is-checked');
+        });
+      });
+
+
+      $('.product').on('click', function() {
+        var balls = $(this).data();
+        //console.log(products[0].text);
+        console.log(products[balls.status].img);
+        var pop = $('#popup');
+        pop.css('display', 'block');
+        pop.html('<img src=' + products[balls.status].img + '>');
+      });
+  });
 }); // end main function
 
 /*if(width > 630) {

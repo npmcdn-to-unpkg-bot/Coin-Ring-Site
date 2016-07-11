@@ -16,18 +16,29 @@
     <li id="hide">Show</li>
     <li id="test">Hide</li>
     <li>About</li>
+    </br>
+    <div class="button-group filters-button-group">
+    <button class="button is-checked" data-filter="*">show all</button>
+    <button class="button" data-filter=".silver">Silver</button>
+    <button class="button" data-filter=".half-dollar">Half Dollar</button>
+    <button class="button" data-filter=".dollar, .silver">Silver Dollars</button>
+    <button class="button" data-filter=":not(.silver)">not silver</button>
+    
+  </div>
   </ul>
+
+  
 </nav>
 
 
 
 <div class="grid">
 
-<div id='popup'> 
-  <div id='exit'>X</div>
-  <div id='content'></div>
-Some Stuff
-</div>
+  <div id='popup'> 
+    <div id='exit'>X</div>
+    <div id='content'></div>
+      Some Stuff
+  </div>
   
 </div>
 
